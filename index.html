@@ -46,9 +46,9 @@
                 <li><a href="#world" data-text="世界">世界</a></li>
                 <li><a href="#gameplay" data-text="战斗">战斗</a></li>
             </ul>
-            <button class="nav-cta">
+            <a href="https://store.steampowered.com/app/2905400/FINAL_FANTASY_VII_REBIRTH/" target="_blank" class="nav-cta">
                 <span>立即购买</span>
-            </button>
+            </a>
             <button class="menu-toggle" id="menu-toggle" aria-label="菜单">
                 <span></span>
                 <span></span>
@@ -86,11 +86,11 @@
             </p>
             
             <div class="hero-cta animate-fade-in delay-5">
-                <a href="#story" class="btn btn-primary">
-                    <span class="btn-text">探索世界</span>
+                <a href="https://store.steampowered.com/app/2905400/FINAL_FANTASY_VII_REBIRTH/" target="_blank" class="btn btn-primary">
+                    <span class="btn-text">立即购买</span>
                     <span class="btn-icon">→</span>
                 </a>
-                <a href="#gameplay" class="btn btn-outline">
+                <a href="https://www.youtube.com/watch?v=BXW4T74eSrI" target="_blank" class="btn btn-outline video-btn">
                     <span class="btn-text">观看预告</span>
                     <span class="btn-icon">▶</span>
                 </a>
@@ -190,7 +190,7 @@
             <div class="characters-slider">
                 <!-- 克劳德 - 金发战士 -->
                 <div class="character-card active" data-index="0">
-                    <div class="card-bg" style="background-image: url('images/screenshot_1.jpg')"></div>
+                    <div class="card-bg" style="background-image: url('images/cloud.jpg')"></div>
                     <div class="card-content">
                         <div class="character-name-container">
                             <span class="character-number">01</span>
@@ -213,7 +213,7 @@
                 
                 <!-- 爱丽丝 - 花之少女 -->
                 <div class="character-card" data-index="1">
-                    <div class="card-bg" style="background-image: url('images/screenshot_2.jpg')"></div>
+                    <div class="card-bg" style="background-image: url('images/aerith.jpg')"></div>
                     <div class="card-content">
                         <div class="character-name-container">
                             <span class="character-number">02</span>
@@ -236,7 +236,7 @@
                 
                 <!-- 蒂法 - 格斗家 -->
                 <div class="character-card" data-index="2">
-                    <div class="card-bg" style="background-image: url('images/screenshot_3.jpg')"></div>
+                    <div class="card-bg" style="background-image: url('images/tifa.jpg')"></div>
                     <div class="card-content">
                         <div class="character-name-container">
                             <span class="character-number">03</span>
@@ -259,7 +259,7 @@
                 
                 <!-- 萨菲罗斯 - 银发反派 -->
                 <div class="character-card" data-index="3">
-                    <div class="card-bg" style="background-image: url('images/screenshot_4.jpg')"></div>
+                    <div class="card-bg" style="background-image: url('images/sephiroth.jpg')"></div>
                     <div class="card-content">
                         <div class="character-name-container">
                             <span class="character-number">04</span>
@@ -522,14 +522,14 @@
                 <h2 class="cta-title">命运由你书写</h2>
                 <p class="cta-text">加入克劳德与伙伴们，踏上改写命运的旅程</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-large btn-primary">
+                    <a href="https://store.steampowered.com/app/2905400/FINAL_FANTASY_VII_REBIRTH/" target="_blank" class="btn btn-large btn-primary">
                         <span>立即购买</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="5" y1="12" x2="19" y2="12"/>
                             <polyline points="12 5 19 12 12 19"/>
                         </svg>
                     </a>
-                    <a href="#" class="btn btn-large btn-outline">
+                    <a href="https://www.youtube.com/watch?v=BXW4T74eSrI" target="_blank" class="btn btn-large btn-outline video-btn">
                         <span>观看预告片</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polygon points="5 3 19 12 5 21 5 3"/>
@@ -580,6 +580,21 @@
             <button class="modal-close" onclick="closeModal()">✕</button>
             <div class="modal-content" id="modalContent">
                 <!-- 动态内容 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 视频弹窗 -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal()">✕</button>
+            <div class="video-container">
+                <iframe id="videoFrame" 
+                    src="" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
             </div>
         </div>
     </div>

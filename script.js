@@ -717,3 +717,60 @@ window.addEventListener('scroll', throttle(() => {
 window.addEventListener('resize', debounce(() => {
     // 窗口大小改变相关的操作
 }, 250));
+
+// ===================================
+// Video Modal Functions
+// ===================================
+
+// Open video modal
+function openVideoModal(videoUrl) {
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('videoFrame');
+    
+    // Convert YouTube watch URL to embed URL
+    let embedUrl = videoUrl;
+    if (videoUrl.includes('watch?v=')) {
+        const videoId = videoUrl.split('watch?v=')[1].split('&')[0];
+        embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    }
+    
+    iframe.src = embedUrl;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close video modal
+function closeVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('videoFrame');
+    
+    modal.classList.remove('active');
+    iframe.src = '';
+    document.body.style.overflow = '';
+}
+
+// Close modal on background click
+document.getElementById('videoModal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeVideoModal();
+    }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeVideoModal();
+    }
+});
+
+// Setup video button clicks
+document.querySelectorAll('.video-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        // If it's a link, get the href, otherwise use YouTube URL
+        const href = this.getAttribute('href');
+        if (href && href.includes('youtube.com')) {
+            e.preventDefault();
+            openVideoModal(href);
+        }
+    });
+});
