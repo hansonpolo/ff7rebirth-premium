@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCharacterSlider();
     initParallax();
     initSmoothScroll();
+    initModalClose();
 });
 
 /* ===================================
@@ -21,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function initLoader() {
     const loader = document.getElementById('loader');
     
-    // 2秒后隐藏加载动画
     setTimeout(() => {
         loader.classList.add('hidden');
         document.body.style.overflow = '';
@@ -39,13 +39,11 @@ function initParticles() {
     const particleCount = 80;
     const connectionDistance = 150;
     
-    // 设置画布大小
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
     
-    // 粒子类
     class Particle {
         constructor() {
             this.x = Math.random() * canvas.width;
@@ -69,7 +67,6 @@ function initParticles() {
             this.x += this.vx;
             this.y += this.vy;
             
-            // 边界检测
             if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
             if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
         }
@@ -82,7 +79,6 @@ function initParticles() {
         }
     }
     
-    // 初始化粒子
     function initParticleArray() {
         particles = [];
         for (let i = 0; i < particleCount; i++) {
@@ -90,7 +86,6 @@ function initParticles() {
         }
     }
     
-    // 绘制连接线
     function drawConnections() {
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
@@ -111,7 +106,6 @@ function initParticles() {
         }
     }
     
-    // 动画循环
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
@@ -125,12 +119,10 @@ function initParticles() {
         requestAnimationFrame(animate);
     }
     
-    // 初始化
     resizeCanvas();
     initParticleArray();
     animate();
     
-    // 窗口大小改变时重新调整
     window.addEventListener('resize', () => {
         resizeCanvas();
         initParticleArray();
@@ -143,7 +135,6 @@ function initParticles() {
 function initCursorGlow() {
     const cursorGlow = document.getElementById('cursor-glow');
     
-    // 只在大屏幕上启用
     if (window.innerWidth < 768) {
         cursorGlow.style.display = 'none';
         return;
@@ -160,7 +151,6 @@ function initCursorGlow() {
     });
     
     function animateGlow() {
-        // 平滑跟随
         glowX += (mouseX - glowX) * 0.1;
         glowY += (mouseY - glowY) * 0.1;
         
@@ -172,7 +162,6 @@ function initCursorGlow() {
     
     animateGlow();
     
-    // 鼠标进入/离开窗口时的效果
     document.addEventListener('mouseenter', () => {
         cursorGlow.style.opacity = '0.3';
     });
@@ -190,9 +179,6 @@ function initNavbar() {
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    // 滚动效果
-    let lastScroll = 0;
-    
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         
@@ -201,11 +187,8 @@ function initNavbar() {
         } else {
             navbar.classList.remove('scrolled');
         }
-        
-        lastScroll = currentScroll;
     });
     
-    // 移动端菜单
     menuToggle.addEventListener('click', () => {
         menuToggle.classList.toggle('active');
         navLinks.classList.toggle('active');
@@ -250,11 +233,9 @@ function initCharacterSlider() {
     const totalCards = cards.length;
     
     function showCard(index) {
-        // 移除所有active类
         cards.forEach(card => card.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
         
-        // 添加active类到当前卡片
         cards[index].classList.add('active');
         dots[index].classList.add('active');
     }
@@ -269,7 +250,6 @@ function initCharacterSlider() {
         showCard(currentIndex);
     }
     
-    // 事件监听
     nextBtn.addEventListener('click', nextCard);
     prevBtn.addEventListener('click', prevCard);
     
@@ -280,10 +260,8 @@ function initCharacterSlider() {
         });
     });
     
-    // 自动播放
     let autoPlayInterval = setInterval(nextCard, 5000);
     
-    // 鼠标悬停时暂停自动播放
     const slider = document.querySelector('.characters-slider');
     slider.addEventListener('mouseenter', () => {
         clearInterval(autoPlayInterval);
@@ -293,7 +271,6 @@ function initCharacterSlider() {
         autoPlayInterval = setInterval(nextCard, 5000);
     });
     
-    // 键盘导航
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') prevCard();
         if (e.key === 'ArrowRight') nextCard();
@@ -344,10 +321,276 @@ function initSmoothScroll() {
 }
 
 /* ===================================
+   Modal Functions
+   =================================== */
+function initModalClose() {
+    const overlay = document.getElementById('modalOverlay');
+    
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            closeModal();
+        }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+}
+
+function openModal(feature) {
+    const overlay = document.getElementById('modalOverlay');
+    const content = document.getElementById('modalContent');
+    
+    const featureData = getFeatureData(feature);
+    
+    content.innerHTML = featureData;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    const overlay = document.getElementById('modalOverlay');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function getFeatureData(feature) {
+    const features = {
+        atb: {
+            title: 'ATB 战斗系统',
+            subtitle: 'ACTIVE TIME BATTLE',
+            description: '《最终幻想VII 重生》的ATB系统是即时动作与经典回合制的完美融合，让玩家在激烈的战斗中依然能够进行深度的战术思考。',
+            image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b2b0a?w=800&q=80',
+            sections: [
+                {
+                    title: '⚡ 核心机制',
+                    content: 'ATB量表会在战斗中持续充能。普通攻击、防御和闪避都会加速充能。当量表满格时，可以进入战术模式，时间变慢，让你精准选择技能和目标。'
+                },
+                {
+                    title: '🎮 战术模式',
+                    content: '按下L1进入战术模式，时间流速降低90%。你可以仔细观察战场局势，选择最合适的技能、道具或魔法，制定完美的战术。'
+                },
+                {
+                    title: '💡 高级技巧',
+                    items: [
+                        '善用"快攻"能力快速积累ATB',
+                        '防御时也会缓慢充能ATB',
+                        '不同角色的ATB充能速度不同',
+                        '双ATB技能需要两个满格量表'
+                    ]
+                }
+            ],
+            gallery: [
+                { image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80', caption: '战斗界面' },
+                { image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&q=80', caption: '战术选择' },
+                { image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80', caption: '技能释放' }
+            ]
+        },
+        limit: {
+            title: '极限爆发',
+            subtitle: 'LIMIT BREAK',
+            description: '每个角色都有独特的极限技能，当承受伤害积累极限值后，可以释放华丽且强力的终极招式，扭转战局！',
+            image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=800&q=80',
+            sections: [
+                {
+                    title: '💫 极限值积累',
+                    content: '在战斗中承受伤害会积累极限值。当极限槽满时，角色会发出光芒，表示可以释放极限技能。每个角色有3个极限等级，威力逐级提升。'
+                },
+                {
+                    title: '🎯 战略运用',
+                    content: '极限技能不仅伤害惊人，还往往附带特殊效果：克劳德的"凶斩"可以一击秒杀，蒂法的"最终天堂"是连续格斗组合，爱丽丝的"伟大福音"能治愈全队。'
+                },
+                {
+                    title: '⬆️ 升级系统',
+                    items: [
+                        '完成特定任务解锁更高等级极限',
+                        '使用极限手册学习新技能',
+                        '极限等级越高，威力越强',
+                        '合理分配极限槽是关键战术'
+                    ]
+                }
+            ],
+            gallery: [
+                { image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80', caption: '极限准备' },
+                { image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80', caption: '释放瞬间' },
+                { image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80', caption: '华丽演出' }
+            ]
+        },
+        synergy: {
+            title: '双重联携',
+            subtitle: 'SYNERGY SKILLS',
+            description: '全新的联携系统让两名角色可以同时发动强力组合技能，不仅伤害倍增，还能创造独特的战术机会！',
+            image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80',
+            sections: [
+                {
+                    title: '🤝 联携类型',
+                    content: '游戏中有三种联携类型：协同攻击（两人同时攻击）、协同能力（一人支援一人攻击）、协同魔法（组合魔法威力翻倍）。每种都有独特的动画和效果。'
+                },
+                {
+                    title: '⚡ 发动条件',
+                    content: '联携技能需要特定角色组合，并且双方都需要消耗ATB量表。成功发动后，会产生额外的协同效果，如削弱敌人防御、提高暴击率等。'
+                },
+                {
+                    title: '🔥 热门组合',
+                    items: [
+                        '克劳德 + 蒂法：破坏者连击',
+                        '爱丽丝 + 蒂法：圣光治愈',
+                        '巴雷特 + 红牙：重炮轰击',
+                        '解锁更多组合需要提升伙伴羁绊'
+                    ]
+                }
+            ],
+            gallery: [
+                { image: 'https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?w=600&q=80', caption: '双人组合' },
+                { image: 'https://images.unsplash.com/photo-1542751110-97427bbecf20?w=600&q=80', caption: '联携发动' },
+                { image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80', caption: '组合技演出' }
+            ]
+        },
+        skill: {
+            title: '技能树系统',
+            subtitle: 'WEAPON ABILITIES',
+            description: '每把武器都有独特的技能树，通过SP点数解锁新能力和被动效果，让你的角色变得更加强大！',
+            image: 'https://images.unsplash.com/photo-1553481187-be93c21490a9?w=800&q=80',
+            sections: [
+                {
+                    title: '🌳 技能树结构',
+                    content: '每把武器有独立的技能树，包含主动技能、被动效果和属性提升。使用该武器战斗可以获得SP点数，用于解锁技能节点。'
+                },
+                {
+                    title: '⚔️ 武器熟练度',
+                    content: '每种武器都有熟练度系统。战斗中使用该武器可以提升熟练度，满级后武器技能可以永久保留，即使更换武器也能使用！'
+                },
+                {
+                    title: '💡 升级策略',
+                    items: [
+                        '优先解锁核心技能节点',
+                        '注意技能树之间的联动',
+                        '平衡攻击、防御、辅助技能',
+                        '不同武器适合不同战斗风格'
+                    ]
+                }
+            ],
+            gallery: [
+                { image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80', caption: '技能树界面' },
+                { image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b2b0a?w=600&q=80', caption: '技能解锁' },
+                { image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80', caption: '武器选择' }
+            ]
+        },
+        materia: {
+            title: '魔晶石系统',
+            subtitle: 'MATERIA SYSTEM',
+            description: '经典的魔晶石系统回归！将魔晶石镶嵌在武器和防具上，可以获得魔法、召唤兽和各种特殊能力。',
+            image: 'https://images.unsplash.com/photo-1614294149010-950b698f72c0?w=800&q=80',
+            sections: [
+                {
+                    title: '💠 魔晶石类型',
+                    content: '魔晶石分为五种颜色：绿色（魔法）、黄色（指令）、紫色（独立）、蓝色（支援）、红色（召唤）。不同颜色提供不同类型的能力。'
+                },
+                {
+                    title: '🔗 组合系统',
+                    content: '魔晶石可以组合使用！例如：将"火"与"范围化"组合，火系魔法变成范围攻击；将"回复"与"MP吸收"组合，治疗时还能恢复MP。'
+                },
+                {
+                    title: '⬆️ 成长系统',
+                    items: [
+                        '战斗中魔晶石会获得AP',
+                        'AP积累可以提升魔晶石等级',
+                        '高等级魔法威力更强、消耗更少',
+                        '某些魔晶石可以进化为更强版本'
+                    ]
+                }
+            ],
+            gallery: [
+                { image: 'https://images.unsplash.com/photo-1614294149010-950b698f72c0?w=600&q=80', caption: '魔晶石展示' },
+                { image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80', caption: '镶嵌界面' },
+                { image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&q=80', caption: '魔法释放' }
+            ]
+        },
+        bond: {
+            title: '伙伴羁绊系统',
+            subtitle: 'AFFINITY SYSTEM',
+            description: '与伙伴建立深厚的关系，不仅能解锁专属剧情，还能获得战斗中的强力支援！',
+            image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80',
+            sections: [
+                {
+                    title: '💕 羁绊等级',
+                    content: '每个可操控角色都有独立的羁绊等级。通过对话、任务和战斗合作提升羁绊，解锁专属技能和联携招式。'
+                },
+                {
+                    title: '🎭 互动事件',
+                    content: '在营火旁与伙伴聊天、一起制作料理、探索世界时的对话...这些互动都会影响羁绊。某些关键选择甚至会改变剧情走向！'
+                },
+                {
+                    title: '🎁 羁绊奖励',
+                    items: [
+                        '解锁角色专属任务',
+                        '获得新联携技能',
+                        '战斗中更频繁的支援',
+                        '独特的服装和饰品'
+                    ]
+                }
+            ],
+            gallery: [
+                { image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80', caption: '伙伴互动' },
+                { image: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&q=80', caption: '营火对话' },
+                { image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80', caption: '羁绊提升' }
+            ]
+        }
+    };
+    
+    const data = features[feature];
+    if (!data) return '';
+    
+    return `
+        <div class="modal-header">
+            <div class="modal-header-text">
+                <span class="subtitle">${data.subtitle}</span>
+                <h2>${data.title}</h2>
+                <p>${data.description}</p>
+            </div>
+            <div class="modal-header-image">
+                <img src="${data.image}" alt="${data.title}">
+            </div>
+        </div>
+        
+        <div class="modal-sections">
+            ${data.sections.map(section => `
+                <div class="modal-section">
+                    <h3>${section.title}</h3>
+                    ${section.content ? `<p>${section.content}</p>` : ''}
+                    ${section.items ? `
+                        <ul>
+                            ${section.items.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    ` : ''}
+                </div>
+            `).join('')}
+        </div>
+        
+        <div class="modal-gallery">
+            <h3>游戏画面</h3>
+            <div class="gallery-grid">
+                ${data.gallery.map(item => `
+                    <div class="gallery-item">
+                        <img src="${item.image}" alt="${item.caption}">
+                        <div class="caption">${item.caption}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+// 全局函数供HTML调用
+window.openFeatureModal = openModal;
+window.closeModal = closeModal;
+
+/* ===================================
    Additional Enhancements
    =================================== */
 
-// 视差滚动优化
 function enhancedParallax() {
     const hero = document.querySelector('.hero');
     const heroContent = document.querySelector('.hero-content');
@@ -368,7 +611,6 @@ function enhancedParallax() {
     });
 }
 
-// 鼠标悬停卡片效果
 function initCardHoverEffects() {
     const cards = document.querySelectorAll('.location-card, .feature-card');
     
@@ -383,29 +625,6 @@ function initCardHoverEffects() {
     });
 }
 
-// 按钮涟漪效果
-function initButtonRipple() {
-    const buttons = document.querySelectorAll('.btn');
-    
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            const rect = this.getBoundingClientRect();
-            const ripple = document.createElement('span');
-            
-            ripple.style.left = e.clientX - rect.left + 'px';
-            ripple.style.top = e.clientY - rect.top + 'px';
-            ripple.classList.add('ripple');
-            
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
-}
-
-// 数字动画
 function animateNumbers() {
     const numbers = document.querySelectorAll('.stat-value, .score-value, .badge-value');
     
@@ -419,7 +638,6 @@ function animateNumbers() {
                 const target = entry.target;
                 const finalValue = target.textContent;
                 
-                // 如果是纯数字，进行动画
                 if (!isNaN(finalValue)) {
                     animateNumber(target, 0, parseInt(finalValue), 1500);
                 }
@@ -460,7 +678,6 @@ function easeOutQuart(x) {
 document.addEventListener('DOMContentLoaded', () => {
     enhancedParallax();
     initCardHoverEffects();
-    initButtonRipple();
     animateNumbers();
 });
 
@@ -468,7 +685,6 @@ document.addEventListener('DOMContentLoaded', () => {
    Performance Optimizations
    =================================== */
 
-// 节流函数
 function throttle(func, limit) {
     let inThrottle;
     return function() {
@@ -482,7 +698,6 @@ function throttle(func, limit) {
     };
 }
 
-// 防抖函数
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -495,12 +710,10 @@ function debounce(func, wait) {
     };
 }
 
-// 优化滚动事件
 window.addEventListener('scroll', throttle(() => {
     // 滚动相关的性能敏感操作
 }, 16));
 
-// 优化窗口大小改变事件
 window.addEventListener('resize', debounce(() => {
     // 窗口大小改变相关的操作
 }, 250));
