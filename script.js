@@ -362,7 +362,7 @@ function getFeatureData(feature) {
             title: 'ATB 战斗系统',
             subtitle: 'ACTIVE TIME BATTLE',
             description: '《最终幻想VII 重生》的ATB系统是即时动作与经典回合制的完美融合，让玩家在激烈的战斗中依然能够进行深度的战术思考。',
-            image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b2b0a?w=800&q=80',
+            image: 'images/screenshot_1.jpg',
             sections: [
                 {
                     title: '⚡ 核心机制',
@@ -383,16 +383,16 @@ function getFeatureData(feature) {
                 }
             ],
             gallery: [
-                { image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80', caption: '战斗界面' },
-                { image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&q=80', caption: '战术选择' },
-                { image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80', caption: '技能释放' }
+                { image: 'images/screenshot_1.jpg', caption: '战斗界面' },
+                { image: 'images/screenshot_2.jpg', caption: '战术选择' },
+                { image: 'images/screenshot_3.jpg', caption: '技能释放' }
             ]
         },
         limit: {
             title: '极限爆发',
             subtitle: 'LIMIT BREAK',
             description: '每个角色都有独特的极限技能，当承受伤害积累极限值后，可以释放华丽且强力的终极招式，扭转战局！',
-            image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=800&q=80',
+            image: 'images/screenshot_2.jpg',
             sections: [
                 {
                     title: '💫 极限值积累',
@@ -413,16 +413,16 @@ function getFeatureData(feature) {
                 }
             ],
             gallery: [
-                { image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80', caption: '极限准备' },
-                { image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80', caption: '释放瞬间' },
-                { image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80', caption: '华丽演出' }
+                { image: 'images/screenshot_2.jpg', caption: '极限准备' },
+                { image: 'images/screenshot_3.jpg', caption: '释放瞬间' },
+                { image: 'images/screenshot_4.jpg', caption: '华丽演出' }
             ]
         },
         synergy: {
             title: '双重联携',
             subtitle: 'SYNERGY SKILLS',
             description: '全新的联携系统让两名角色可以同时发动强力组合技能，不仅伤害倍增，还能创造独特的战术机会！',
-            image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80',
+            image: 'images/screenshot_3.jpg',
             sections: [
                 {
                     title: '🤝 联携类型',
@@ -443,16 +443,16 @@ function getFeatureData(feature) {
                 }
             ],
             gallery: [
-                { image: 'https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?w=600&q=80', caption: '双人组合' },
-                { image: 'https://images.unsplash.com/photo-1542751110-97427bbecf20?w=600&q=80', caption: '联携发动' },
-                { image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80', caption: '组合技演出' }
+                { image: 'images/screenshot_3.jpg', caption: '双人组合' },
+                { image: 'images/screenshot_4.jpg', caption: '联携发动' },
+                { image: 'images/work_1.jpg', caption: '组合技演出' }
             ]
         },
         skill: {
             title: '技能树系统',
             subtitle: 'WEAPON ABILITIES',
             description: '每把武器都有独特的技能树，通过SP点数解锁新能力和被动效果，让你的角色变得更加强大！',
-            image: 'https://images.unsplash.com/photo-1553481187-be93c21490a9?w=800&q=80',
+            image: 'images/work_1.jpg',
             sections: [
                 {
                     title: '🌳 技能树结构',
@@ -473,16 +473,16 @@ function getFeatureData(feature) {
                 }
             ],
             gallery: [
-                { image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&q=80', caption: '技能树界面' },
-                { image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b2b0a?w=600&q=80', caption: '技能解锁' },
-                { image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80', caption: '武器选择' }
+                { image: 'images/work_1.jpg', caption: '技能树界面' },
+                { image: 'images/work_2.jpg', caption: '技能解锁' },
+                { image: 'images/work_3.jpg', caption: '武器选择' }
             ]
         },
         materia: {
             title: '魔晶石系统',
             subtitle: 'MATERIA SYSTEM',
             description: '经典的魔晶石系统回归！将魔晶石镶嵌在武器和防具上，可以获得魔法、召唤兽和各种特殊能力。',
-            image: 'https://images.unsplash.com/photo-1614294149010-950b698f72c0?w=800&q=80',
+            image: 'images/work_2.jpg',
             sections: [
                 {
                     title: '💠 魔晶石类型',
@@ -503,16 +503,16 @@ function getFeatureData(feature) {
                 }
             ],
             gallery: [
-                { image: 'https://images.unsplash.com/photo-1614294149010-950b698f72c0?w=600&q=80', caption: '魔晶石展示' },
-                { image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80', caption: '镶嵌界面' },
-                { image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&q=80', caption: '魔法释放' }
+                { image: 'images/work_2.jpg', caption: '魔晶石展示' },
+                { image: 'images/work_3.jpg', caption: '镶嵌界面' },
+                { image: 'images/screenshot_1.jpg', caption: '魔法释放' }
             ]
         },
         bond: {
             title: '伙伴羁绊系统',
             subtitle: 'AFFINITY SYSTEM',
             description: '与伙伴建立深厚的关系，不仅能解锁专属剧情，还能获得战斗中的强力支援！',
-            image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80',
+            image: 'images/work_3.jpg',
             sections: [
                 {
                     title: '💕 羁绊等级',
@@ -533,9 +533,9 @@ function getFeatureData(feature) {
                 }
             ],
             gallery: [
-                { image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80', caption: '伙伴互动' },
-                { image: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&q=80', caption: '营火对话' },
-                { image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80', caption: '羁绊提升' }
+                { image: 'images/work_3.jpg', caption: '伙伴互动' },
+                { image: 'images/hero-banner.jpg', caption: '营火对话' },
+                { image: 'images/keyart.jpg', caption: '羁绊提升' }
             ]
         }
     };
