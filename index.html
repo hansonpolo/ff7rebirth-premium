@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最终幻想VII 重生 | FINAL FANTASY VII REBIRTH</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- 加载动画 -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <span class="loader-text">FFVII</span>
+                <div class="loader-bar">
+                    <div class="loader-progress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 鼠标跟随光效 -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-ff">FF</span>
+                <span class="logo-vii">VII</span>
+                <span class="logo-rebirth">REBIRTH</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero" data-text="首页">首页</a></li>
+                <li><a href="#story" data-text="故事">故事</a></li>
+                <li><a href="#characters" data-text="角色">角色</a></li>
+                <li><a href="#world" data-text="世界">世界</a></li>
+                <li><a href="#gameplay" data-text="战斗">战斗</a></li>
+            </ul>
+            <button class="nav-cta">
+                <span>立即购买</span>
+            </button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <!-- 动态渐变背景 -->
+            <div class="gradient-bg"></div>
+            <!-- 浮动光效 -->
+            <div class="floating-lights">
+                <div class="light light-1"></div>
+                <div class="light light-2"></div>
+                <div class="light light-3"></div>
+            </div>
+            <!-- 网格线 -->
+            <div class="grid-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge animate-fade-in">
+                <span class="badge-icon">★</span>
+                <span>2024年度最佳RPG</span>
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="title-line-1 animate-slide-up delay-1">FINAL FANTASY</span>
+                <span class="title-line-2 animate-slide-up delay-2">VII</span>
+                <span class="title-line-3 animate-slide-up delay-3">REBIRTH</span>
+            </h1>
+            
+            <p class="hero-tagline animate-fade-in delay-4">
+                命运的重生 · 传奇的延续
+            </p>
+            
+            <div class="hero-cta animate-fade-in delay-5">
+                <a href="#story" class="btn btn-primary">
+                    <span class="btn-text">探索世界</span>
+                    <span class="btn-icon">→</span>
+                </a>
+                <a href="#gameplay" class="btn btn-outline">
+                    <span class="btn-text">观看预告</span>
+                    <span class="btn-icon">▶</span>
+                </a>
+            </div>
+            
+            <div class="hero-stats animate-fade-in delay-6">
+                <div class="stat-item">
+                    <span class="stat-value">92</span>
+                    <span class="stat-label">Metacritic</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-value">40/40</span>
+                    <span class="stat-label">Famitsu</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-value">10/10</span>
+                    <span class="stat-label">IGN</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>SCROLL</span>
+        </div>
+        
+        <!-- 装饰元素 -->
+        <div class="hero-decoration left">
+            <div class="deco-line"></div>
+            <div class="deco-text">PLAYSTATION 5</div>
+        </div>
+        <div class="hero-decoration right">
+            <div class="deco-line"></div>
+            <div class="deco-text">2024.02.29</div>
+        </div>
+    </section>
+
+    <!-- 故事区域 -->
+    <section class="story-section" id="story">
+        <div class="section-bg">
+            <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1920&q=80')"></div>
+            <div class="story-overlay"></div>
+        </div>
+        
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">命运的重写</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="story-content">
+                <div class="story-text reveal-left">
+                    <div class="story-quote">
+                        <div class="quote-mark">"</div>
+                        <p>我是...谁的记忆？<br>谁的梦境？</p>
+                    </div>
+                    
+                    <p class="story-paragraph">
+                        在一个名为<span class="highlight">盖亚</span>的星球上，巨大的企业神罗公司掌控着世界的命脉。
+                        他们开采"魔晄"——一种源自星球生命能量的神秘物质，为城市提供动力，却也在悄然消耗着星球的生命。
+                    </p>
+                    
+                    <p class="story-paragraph">
+                        前神罗战士<span class="highlight">萨菲罗斯</span>，曾经是世界的英雄，如今却成为毁灭的化身。
+                        在米德加的对抗后，他消失在北方。<span class="highlight">克劳德·斯特莱夫</span>与伙伴们踏上追击之旅，却不知道命运的齿轮已经开始转动。
+                    </p>
+                </div>
+                
+                <div class="story-visual reveal-right">
+                    <div class="visual-frame">
+                        <img src="https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=800&q=80" alt="Midgar" class="visual-image">
+                        <div class="visual-caption">
+                            <span class="caption-title">米德加</span>
+                            <span class="caption-sub">MIDGAR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 角色区域 -->
+    <section class="characters-section" id="characters">
+        <div class="section-bg-dark"></div>
+        
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">英雄与宿敌</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="characters-slider">
+                <div class="character-card active" data-index="0">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=800&q=80')"></div>
+                    <div class="card-content">
+                        <div class="character-name-container">
+                            <span class="character-number">01</span>
+                            <h3 class="character-name">克劳德·斯特莱夫</h3>
+                            <p class="character-name-en">CLOUD STRIFE</p>
+                        </div>
+                        <p class="character-desc">
+                            前神罗特种兵，现为雪崩组织的雇佣兵。手持标志性的破坏剑，
+                            金色的尖刺发型是他的特征。内心深处藏着不为人知的记忆碎片...
+                        </p>
+                        <div class="character-weapon">
+                            <span class="weapon-label">武器</span>
+                            <span class="weapon-name">破坏剑</span>
+                        </div>
+                    </div>
+                    <div class="card-decoration">
+                        <div class="deco-circle"></div>
+                    </div>
+                </div>
+                
+                <div class="character-card" data-index="1">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&q=80')"></div>
+                    <div class="card-content">
+                        <div class="character-name-container">
+                            <span class="character-number">02</span>
+                            <h3 class="character-name">爱丽丝·盖恩斯巴勒</h3>
+                            <p class="character-name-en">AERITH GAINSBOROUGH</p>
+                        </div>
+                        <p class="character-desc">
+                            古代种族的最后后裔，能够在星球上听到"星球之声"。
+                            经营着米德加第五区的教堂，种植着美丽的花朵。她温柔善良，却背负着沉重的命运。
+                        </p>
+                        <div class="character-weapon">
+                            <span class="weapon-label">武器</span>
+                            <span class="weapon-name">长杖</span>
+                        </div>
+                    </div>
+                    <div class="card-decoration">
+                        <div class="deco-circle"></div>
+                    </div>
+                </div>
+                
+                <div class="character-card" data-index="2">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&q=80')"></div>
+                    <div class="card-content">
+                        <div class="character-name-container">
+                            <span class="character-number">03</span>
+                            <h3 class="character-name">蒂法·洛克哈特</h3>
+                            <p class="character-name-en">TIFA LOCKHART</p>
+                        </div>
+                        <p class="character-desc">
+                            雪崩组织的核心成员，也是第七天堂酒吧的老板娘。
+                            精通格斗术的她外表坚强，内心却有着柔软的一面。她与克劳德有着童年的羁绊。
+                        </p>
+                        <div class="character-weapon">
+                            <span class="weapon-label">武器</span>
+                            <span class="weapon-name">格斗手套</span>
+                        </div>
+                    </div>
+                    <div class="card-decoration">
+                        <div class="deco-circle"></div>
+                    </div>
+                </div>
+                
+                <div class="character-card" data-index="3">
+                    <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80')"></div>
+                    <div class="card-content">
+                        <div class="character-name-container">
+                            <span class="character-number">04</span>
+                            <h3 class="character-name">萨菲罗斯</h3>
+                            <p class="character-name-en">SEPHIROTH</p>
+                        </div>
+                        <p class="character-desc">
+                            传说中的英雄，曾经的神罗最强战士。如今却成为了毁灭世界的威胁。
+                            那把名为"正宗刀"的超长武士刀，是所有人的噩梦。
+                        </p>
+                        <div class="character-weapon">
+                            <span class="weapon-label">武器</span>
+                            <span class="weapon-name">正宗刀</span>
+                        </div>
+                    </div>
+                    <div class="card-decoration">
+                        <div class="deco-circle"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="characters-nav">
+                <button class="char-nav-btn prev" aria-label="上一个">
+                    <span>←</span>
+                </button>
+                <div class="char-nav-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <button class="char-nav-btn next" aria-label="下一个">
+                    <span>→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 世界区域 -->
+    <section class="world-section" id="world">
+        <div class="parallax-container">
+            <div class="parallax-layer layer-1" style="background-image: url('https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=1920&q=80')"></div>
+            <div class="parallax-layer layer-2"></div>
+        </div>
+        
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">广阔世界</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="world-intro reveal-up">
+                <p>离开米德加的铁壁，踏上盖亚星球的广袤大地。从草原到沙漠，从海岸到雪山，每一处都藏着故事。</p>
+            </div>
+            
+            <div class="world-locations">
+                <div class="location-card reveal-up delay-1">
+                    <div class="location-image">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&q=80" alt="Grasslands">
+                        <div class="location-overlay"></div>
+                    </div>
+                    <div class="location-info">
+                        <h3 class="location-name">草原地带</h3>
+                        <p class="location-desc">宁静的草原，陆行鸟漫步其间</p>
+                    </div>
+                </div>
+                
+                <div class="location-card reveal-up delay-2">
+                    <div class="location-image">
+                        <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&q=80" alt="Desert">
+                        <div class="location-overlay"></div>
+                    </div>
+                    <div class="location-info">
+                        <h3 class="location-name">沙漠区域</h3>
+                        <p class="location-desc">金色沙丘下的古老秘密</p>
+                    </div>
+                </div>
+                
+                <div class="location-card reveal-up delay-3">
+                    <div class="location-image">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Coast">
+                        <div class="location-overlay"></div>
+                    </div>
+                    <div class="location-info">
+                        <h3 class="location-name">太阳海岸</h3>
+                        <p class="location-desc">碧海蓝天，度假胜地</p>
+                    </div>
+                </div>
+                
+                <div class="location-card reveal-up delay-4">
+                    <div class="location-image">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Mountains">
+                        <div class="location-overlay"></div>
+                    </div>
+                    <div class="location-info">
+                        <h3 class="location-name">星陨峡谷</h3>
+                        <p class="location-desc">神圣的山脉，古代的遗迹</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 战斗系统 -->
+    <section class="gameplay-section" id="gameplay">
+        <div class="section-bg">
+            <div class="gameplay-gradient"></div>
+        </div>
+        
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">战斗系统</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="gameplay-intro reveal-up">
+                <h3>即时与策略的完美融合</h3>
+                <p>融合动作与回合制，在激烈战斗与战术思考间自由切换</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card reveal-left delay-1">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">ATB 系统</h4>
+                    <p class="feature-desc">通过"ATB量表"控制战斗节奏，在激烈动作与战术思考间自由切换</p>
+                </div>
+                
+                <div class="feature-card reveal-up delay-2">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">极限爆发</h4>
+                    <p class="feature-desc">每个角色都有独特的终极技能，华丽的动画与毁灭性的伤害</p>
+                </div>
+                
+                <div class="feature-card reveal-right delay-3">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">双重联携</h4>
+                    <p class="feature-desc">全新的合体技系统，两名角色同时发动强力技能</p>
+                </div>
+                
+                <div class="feature-card reveal-left delay-4">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">技能树</h4>
+                    <p class="feature-desc">每个角色都有独特的成长路线，自由定制战斗风格</p>
+                </div>
+                
+                <div class="feature-card reveal-up delay-5">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="9" y1="3" x2="9" y2="21"/>
+                            <line x1="15" y1="3" x2="15" y2="21"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="3" y1="15" x2="21" y2="15"/>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">魔晶石</h4>
+                    <p class="feature-desc">经典的魔晶石系统回归，组合出无限可能的战斗策略</p>
+                </div>
+                
+                <div class="feature-card reveal-right delay-6">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </div>
+                    <h4 class="feature-title">伙伴羁绊</h4>
+                    <p class="feature-desc">深化与伙伴的关系，解锁专属剧情与强力技能</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 评分区域 -->
+    <section class="scores-section">
+        <div class="scores-bg">
+            <div class="gradient-reverse"></div>
+        </div>
+        
+        <div class="container">
+            <div class="scores-grid">
+                <div class="score-card reveal-up delay-1">
+                    <div class="score-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="score-bg" cx="50" cy="50" r="45"/>
+                            <circle class="score-fill" cx="50" cy="50" r="45" stroke-dasharray="283" stroke-dashoffset="23"/>
+                        </svg>
+                        <span class="score-value">92</span>
+                    </div>
+                    <span class="score-source">Metacritic</span>
+                    <p class="score-text">"RPG游戏的标杆之作"</p>
+                </div>
+                
+                <div class="score-card reveal-up delay-2">
+                    <div class="score-badge">
+                        <span class="badge-value">10</span>
+                        <span class="badge-max">/10</span>
+                    </div>
+                    <span class="score-source">IGN</span>
+                    <p class="score-text">"一个必玩的杰作"</p>
+                </div>
+                
+                <div class="score-card reveal-up delay-3">
+                    <div class="score-badge perfect">
+                        <span class="badge-value">40</span>
+                        <span class="badge-max">/40</span>
+                    </div>
+                    <span class="score-source">Famitsu</span>
+                    <p class="score-text">"满分的完美体验"</p>
+                </div>
+                
+                <div class="score-card reveal-up delay-4">
+                    <div class="score-badge">
+                        <span class="badge-value">5</span>
+                        <span class="badge-max">/5</span>
+                    </div>
+                    <span class="score-source">GameSpot</span>
+                    <p class="score-text">"情感深刻，体验难忘"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA区域 -->
+    <section class="cta-section">
+        <div class="cta-bg">
+            <div class="cta-gradient"></div>
+            <div class="cta-pattern"></div>
+        </div>
+        
+        <div class="container">
+            <div class="cta-content reveal-up">
+                <h2 class="cta-title">命运由你书写</h2>
+                <p class="cta-text">加入克劳德与伙伴们，踏上改写命运的旅程</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-large btn-primary">
+                        <span>立即购买</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="btn btn-large btn-outline">
+                        <span>观看预告片</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="platforms">
+                    <span class="platform-label">现已登陆</span>
+                    <div class="platform-icons">
+                        <div class="platform-icon">
+                            <span>PlayStation 5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-bg"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-ff">FF</span>
+                    <span class="logo-vii">VII</span>
+                    <span class="logo-rebirth">REBIRTH</span>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="https://www.finalfantasyvii.com/" target="_blank">官方网站</a>
+                    <a href="https://www.square-enix.com/" target="_blank">Square Enix</a>
+                    <a href="#">支持</a>
+                    <a href="#">隐私政策</a>
+                </div>
+                
+                <div class="footer-info">
+                    <p>本页面为粉丝制作的非官方介绍网站</p>
+                    <p>FINAL FANTASY VII REBIRTH © SQUARE ENIX CO., LTD. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
